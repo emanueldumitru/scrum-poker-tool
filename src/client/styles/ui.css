@@ -1,0 +1,584 @@
+/* ---------------------------------------------------------------------------
+   Modal
+   --------------------------------------------------------------------------- */
+body.has-modal {
+  overflow: hidden;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  overflow-y: auto;
+  background: var(--overlay);
+  backdrop-filter: blur(3px);
+  animation: fade-in 0.15s ease-out;
+}
+
+.modal {
+  width: 100%;
+  max-height: calc(100dvh - 48px);
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  animation: modal-in 0.2s var(--ease-out);
+}
+
+.modal:focus {
+  outline: none;
+}
+
+.modal-sm {
+  max-width: 440px;
+}
+
+.modal-md {
+  max-width: 560px;
+}
+
+.modal-lg {
+  max-width: 860px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 20px 4px 24px;
+}
+
+.modal-header h2 {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.modal-body {
+  display: grid;
+  gap: 16px;
+  padding: 12px 24px 24px;
+  overflow-y: auto;
+}
+
+.modal-footer,
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-footer {
+  padding: 14px 24px 20px;
+  border-top: 1px solid var(--line);
+}
+
+.confirm-message {
+  color: var(--text-2);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Popover & menus
+   --------------------------------------------------------------------------- */
+.popover {
+  position: fixed;
+  z-index: 120;
+  min-width: 200px;
+  max-width: min(360px, calc(100vw - 16px));
+  padding: 6px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  animation: pop-in 0.14s var(--ease-out);
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+}
+
+.menu {
+  display: grid;
+  gap: 2px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.menu-item:hover:not(:disabled),
+.menu-item:focus-visible {
+  background: var(--surface-2);
+}
+
+.menu-item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.menu-item.is-danger {
+  color: var(--danger);
+}
+
+.menu-item-icon {
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+}
+
+.menu-item.is-danger .menu-item-icon {
+  color: inherit;
+}
+
+.menu-item-text {
+  flex: 1;
+  display: grid;
+}
+
+.menu-item-hint {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.menu-separator {
+  height: 1px;
+  margin: 4px 6px;
+  background: var(--line);
+}
+
+.menu-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px 12px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.menu-header strong {
+  display: block;
+  font-size: 15px;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menu-header span {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.avatar {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   Switch & segmented control
+   --------------------------------------------------------------------------- */
+.switch-list {
+  display: grid;
+  gap: 4px;
+}
+
+.switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.switch-row.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.switch-text {
+  display: grid;
+  gap: 2px;
+}
+
+.switch-label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.switch-description {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.switch {
+  position: relative;
+  flex: none;
+  width: 42px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--surface-3);
+  transition: background-color 0.2s;
+}
+
+.switch[aria-checked='true'],
+.switch.is-on {
+  background: var(--accent);
+}
+
+.switch-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
+  transition: transform 0.2s var(--ease-out);
+}
+
+.switch[aria-checked='true'] .switch-thumb,
+.switch.is-on .switch-thumb {
+  transform: translateX(18px);
+}
+
+.switch-sm {
+  width: 34px;
+  height: 20px;
+}
+
+.switch-sm .switch-thumb {
+  width: 14px;
+  height: 14px;
+}
+
+.switch-sm.is-on .switch-thumb {
+  transform: translateX(14px);
+}
+
+.segmented {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-raised);
+  border: 1.5px solid var(--line-strong);
+  width: 100%;
+}
+
+.segmented button {
+  flex: 1;
+  height: 34px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13.5px;
+  font-weight: 600;
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+}
+
+.segmented button:hover:not(.is-active) {
+  color: var(--text);
+}
+
+.segmented button.is-active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent-line);
+}
+
+/* ---------------------------------------------------------------------------
+   Tooltip (CSS-only, above the host)
+   --------------------------------------------------------------------------- */
+.tooltip-host {
+  position: relative;
+  display: inline-flex;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  z-index: 30;
+  width: max-content;
+  max-width: 300px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  transition:
+    opacity 0.15s,
+    transform 0.15s;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border: 6px solid transparent;
+  border-top-color: var(--surface);
+}
+
+.tooltip:empty {
+  display: none;
+}
+
+.tooltip-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.tooltip-host:hover .tooltip,
+.tooltip-host:focus-within .tooltip,
+.tooltip-host.is-open .tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Start-aligned variant: the arrow sits near the left edge and the bubble extends to the
+   right, so it does not cover whatever is to the left of the host. */
+.tooltip-host.tooltip-start .tooltip {
+  transform: translate(-26px, 4px);
+  text-align: left;
+}
+
+.tooltip-host.tooltip-start .tooltip::after {
+  left: 26px;
+}
+
+.tooltip-host.tooltip-start:hover .tooltip,
+.tooltip-host.tooltip-start:focus-within .tooltip,
+.tooltip-host.tooltip-start.is-open .tooltip {
+  transform: translate(-26px, 0);
+}
+
+/* ---------------------------------------------------------------------------
+   Toasts, spinner, chips, pickers
+   --------------------------------------------------------------------------- */
+.toasts {
+  position: fixed;
+  left: 50%;
+  top: calc(var(--topbar-h) + 10px);
+  z-index: 200;
+  display: grid;
+  gap: 8px;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 10px 10px 16px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  font-size: 14px;
+  pointer-events: auto;
+  animation: toast-in 0.2s var(--ease-out);
+}
+
+.toast-success {
+  box-shadow:
+    inset 3px 0 0 var(--success),
+    var(--shadow-md);
+}
+
+.toast-error {
+  box-shadow:
+    inset 3px 0 0 var(--danger),
+    var(--shadow-md);
+}
+
+.toast-close {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+}
+
+.toast-close:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.spinner {
+  display: inline-block;
+  border: 2px solid var(--line-strong);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    border-color 0.15s,
+    background-color 0.15s;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.chip-danger {
+  color: var(--danger);
+}
+
+.chip-danger:hover {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+}
+
+.picker {
+  display: grid;
+  gap: 10px;
+  padding: 8px;
+}
+
+.picker-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.picker-reset {
+  justify-self: start;
+}
+
+.mini-deck {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 300px;
+}
+
+.mini-card {
+  display: grid;
+  place-items: center;
+  min-width: 34px;
+  height: 44px;
+  padding: 0 4px;
+  border: 2px solid var(--accent);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+  transition:
+    background-color 0.12s,
+    color 0.12s,
+    transform 0.12s;
+}
+
+button.mini-card:hover {
+  transform: translateY(-2px);
+  background: var(--accent-soft);
+}
+
+.mini-card.is-selected {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.mini-card.is-static {
+  min-width: 28px;
+  height: 38px;
+  font-size: 12.5px;
+  border-width: 1.5px;
+}

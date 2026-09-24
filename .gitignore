@@ -1,0 +1,8 @@
+node_modules/
+dist/
+# Game snapshots contain display names (personal data) — never commit them.
+data/
+*.log
+.env
+.DS_Store
+coverage/
